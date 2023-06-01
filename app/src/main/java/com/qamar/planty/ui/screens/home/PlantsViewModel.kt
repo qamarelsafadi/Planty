@@ -41,7 +41,7 @@ class PlantsViewModel @Inject constructor(
             }
             repository.getPlants()
                 .collect { result ->
-                    val authUiState = when (result.status) {
+                    val uiState = when (result.status) {
                         Status.SUCCESS -> {
                             isLoaded.value = true
                             val data = result.data
@@ -60,7 +60,7 @@ class PlantsViewModel @Inject constructor(
                         )
                     }
                     _uiState.update {
-                        authUiState
+                        uiState
                     }
                 }
         }
