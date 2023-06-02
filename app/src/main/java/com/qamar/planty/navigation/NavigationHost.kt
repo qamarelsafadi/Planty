@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.qamar.planty.navigation.PlantyDestinations.DETAILS_ROUTE
 import com.qamar.planty.navigation.PlantyDestinationsArgs.ID_ARGS
+import com.qamar.planty.ui.screens.home.details.DetailsScreen
 import com.qamar.planty.ui.screens.home.views.HomeScreen
 
 @Composable
@@ -39,7 +40,8 @@ fun NavigationHost(
                 type = IntType
             })
         ) {
-          //  DetailsScreen()
+            val id = it.arguments?.getInt(ID_ARGS) ?: 0
+            DetailsScreen(id = id)
         }
     }
 }

@@ -17,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.qamar.planty.data.source.network.plants.model.Links
-import com.qamar.planty.data.source.network.plants.model.Plant
+import com.qamar.planty.data.source.network.plants.model.plants.Links
+import com.qamar.planty.data.source.network.plants.model.plants.Plant
 import com.qamar.planty.ui.screens.home.views.item.PagerView
 import com.qamar.planty.ui.theme.PlantyTheme
 import kotlinx.collections.immutable.ImmutableList
@@ -28,7 +28,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CategoryTabs(
-    plants: ImmutableList<Plant>
+    plants: ImmutableList<Plant>,
+    onClickItem: (Int) -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState()
@@ -62,7 +63,8 @@ fun CategoryTabs(
                 })
             }
         }
-        PagerView(pagerState, plants)
+        PagerView(pagerState, plants,
+            onClickItem = onClickItem)
     }
 }
 
@@ -93,5 +95,5 @@ private fun CategoryTabsPreview() = PlantyTheme {
             synonyms = listOf(),
             year = 1988
         )
-    ))
+    )){}
 }

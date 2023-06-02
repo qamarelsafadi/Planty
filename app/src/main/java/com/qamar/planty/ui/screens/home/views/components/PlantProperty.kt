@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.qamar.planty.data.source.network.plants.model.Plant
+import com.qamar.planty.data.source.network.plants.model.plants.Plant
 
 
 @Composable

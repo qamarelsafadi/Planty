@@ -12,15 +12,13 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,10 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.qamar.planty.R
-import com.qamar.planty.data.source.network.plants.model.Plant
+import com.qamar.planty.data.source.network.plants.model.plants.Plant
 import com.qamar.planty.ui.core.views.LoadingView
 import com.qamar.planty.ui.screens.home.PlantsViewModel
-import com.qamar.planty.ui.screens.home.state.HomeUiState
+import com.qamar.planty.ui.screens.home.state.PlantUiState
 import com.qamar.planty.ui.screens.home.views.components.CategoryTabs
 import com.qamar.planty.ui.theme.Black
 import com.qamar.planty.ui.theme.PlantyTheme
@@ -46,7 +44,7 @@ fun HomeScreen(
     goToDetails: (Int) -> Unit
 ) {
 
-    val viewState: HomeUiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val viewState: PlantUiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     /**
      * get plants from network
@@ -62,14 +60,15 @@ fun HomeScreen(
      */
 
     when (val state = viewState) {
-        is HomeUiState.Loading, HomeUiState.IDLE -> LoadingView()
-        is HomeUiState.Success -> {
+        is PlantUiState.Loading, PlantUiState.IDLE -> LoadingView()
+        is PlantUiState.Success -> {
             HomeContent(
                 state.plants ?: persistentListOf(),
+                onClickItem = goToDetails
             )
         }
 
-        is HomeUiState.Failed -> {
+        is PlantUiState.Failed -> {
             EventEffect(
                 event = state.onFailure,
                 onConsumed = viewModel::onFailure
@@ -82,7 +81,10 @@ fun HomeScreen(
 
 
 @Composable
-fun HomeContent(plants: ImmutableList<Plant>) {
+fun HomeContent(
+    plants: ImmutableList<Plant>,
+    onClickItem: (Int) -> Unit
+) {
     Column(
         Modifier
             .fillMaxSize()
@@ -93,7 +95,10 @@ fun HomeContent(plants: ImmutableList<Plant>) {
             color = Color.Black,
             modifier = Modifier.padding(start = 52.dp, top = 50.dp)
         )
-        CategoryTabs(plants)
+        CategoryTabs(
+            plants,
+            onClickItem = onClickItem
+        )
         Spacer(modifier = Modifier.weight(1f))
 
         // Footer
@@ -101,8 +106,9 @@ fun HomeContent(plants: ImmutableList<Plant>) {
             Modifier
                 .fillMaxWidth()
                 .requiredHeight(150.dp)
-                .background(Black,RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)),
-            horizontalArrangement = Arrangement.Center
+                .background(Black, RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = stringResource(R.string.take_care),
@@ -110,6 +116,7 @@ fun HomeContent(plants: ImmutableList<Plant>) {
                 textAlign = TextAlign.Center,
                 style = titleFont,
                 modifier = Modifier
+                    .padding(top = 15.dp)
                     .navigationBarsPadding()
                     .fillMaxWidth(1f)
                     .height(150.dp),
@@ -121,6 +128,6 @@ fun HomeContent(plants: ImmutableList<Plant>) {
 @Preview
 @Composable
 private fun HomeContentPreview() = PlantyTheme {
-    HomeContent(persistentListOf())
+    HomeContent(persistentListOf()) {}
 }
 

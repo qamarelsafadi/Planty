@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.qamar.planty.data.source.network.Status
 import com.qamar.planty.data.source.network.plants.repository.PlantsRepository
-import com.qamar.planty.ui.screens.home.state.HomeUiState
+import com.qamar.planty.ui.screens.home.state.PlantUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.palm.composestateevents.triggered
 import kotlinx.collections.immutable.toImmutableList
@@ -26,9 +26,8 @@ class PlantsViewModel @Inject constructor(
     /**
      * State Flows
      */
-    private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.IDLE)
-    val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
-
+    private val _uiState = MutableStateFlow<PlantUiState>(PlantUiState.IDLE)
+    val uiState: StateFlow<PlantUiState> = _uiState.asStateFlow()
 
     /**
      * API Requests
@@ -37,7 +36,7 @@ class PlantsViewModel @Inject constructor(
     fun getPlants() {
         viewModelScope.launch {
             _uiState.update {
-                HomeUiState.Loading
+                PlantUiState.Loading
             }
             repository.getPlants()
                 .collect { result ->
@@ -45,15 +44,15 @@ class PlantsViewModel @Inject constructor(
                         Status.SUCCESS -> {
                             isLoaded.value = true
                             val data = result.data
-                            HomeUiState.Success(
+                            PlantUiState.Success(
                                 plants = data?.toImmutableList()
                             )
                         }
 
                         Status.LOADING ->
-                            HomeUiState.Loading
+                            PlantUiState.Loading
 
-                        Status.ERROR -> HomeUiState.Failed(
+                        Status.ERROR -> PlantUiState.Failed(
                             onFailure = triggered(
                                 result.message
                             )
@@ -65,7 +64,36 @@ class PlantsViewModel @Inject constructor(
                 }
         }
     }
+    fun getPlantDetails(id: Int) {
+        viewModelScope.launch {
+            _uiState.update {
+                PlantUiState.Loading
+            }
+            repository.getPlantDetails(id)
+                .collect { result ->
+                    val uiState = when (result.status) {
+                        Status.SUCCESS -> {
+                            isLoaded.value = true
+                            val data = result.data
+                            PlantUiState.Success(
+                                plant = data
+                            )
+                        }
+                        Status.LOADING ->
+                            PlantUiState.Loading
 
+                        Status.ERROR -> PlantUiState.Failed(
+                            onFailure = triggered(
+                                result.message
+                            )
+                        )
+                    }
+                    _uiState.update {
+                        uiState
+                    }
+                }
+        }
+    }
 
     fun onFailure(){
         _uiState.update {

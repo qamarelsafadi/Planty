@@ -1,11 +1,11 @@
-package com.qamar.planty.data.source.network.plants.model
+package com.qamar.planty.data.source.network.plants.model.plants
 
 
 import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 
 @Keep
-data class HomeResponse(
+data class PlantsResponse(
     @SerializedName("data")
     val plants: List<Plant> = listOf(),
     @SerializedName("links")

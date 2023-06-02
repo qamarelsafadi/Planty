@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-<<<<<<< HEAD
     <style name="Theme.Planty" parent="android:Theme.Material.Light.NoActionBar" />
-=======
     <style name="Theme.ComposeBaseProject" parent="Theme.AppCompat.Light.NoActionBar"/>
     <style name="AlertTextAppearance_Title_1">
         <item name="android:textSize">18sp</item>
@@ -16,5 +13,4 @@
         <item name="android:textColor">@color/white</item>
 
     </style>
->>>>>>> 7220c26 (feat: add api)
 </resources>

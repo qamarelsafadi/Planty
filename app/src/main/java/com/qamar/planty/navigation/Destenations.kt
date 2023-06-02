@@ -12,7 +12,7 @@ object PlantyDestinationsArgs {
 }
 
 private object PlantyScreens {
-    const val DETAILS_SCREEN = "details"
+    const val DETAILS_SCREEN = "Details"
 }
 
 object PlantyDestinations {

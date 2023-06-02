@@ -1,4 +1,4 @@
-package com.qamar.planty.data.source.network.plants.model
+package com.qamar.planty.data.source.network.plants.model.plants
 
 
 import com.google.gson.annotations.SerializedName
@@ -17,7 +17,7 @@ data class Plant(
     @SerializedName("family_common_name")
     val familyCommonName: Any? = Any(),
     @SerializedName("genus")
-    val genus: String = "",
+    val genus: Any = "",
     @SerializedName("genus_id")
     val genusId: Int = 0,
     @SerializedName("id")

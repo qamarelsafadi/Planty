@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.qamar.planty.R
 import com.qamar.planty.navigation.Screens
+import com.qamar.planty.ui.theme.titleFont
 
 
 /**
@@ -30,7 +31,8 @@ fun TopBar(
     if (currentScreen.showTitle == true) {
         CenterAlignedTopAppBar(
             title = {
-                Text(stringResource(id = currentScreen.title!!))
+                Text(stringResource(id = currentScreen.title!!),
+                    style = titleFont)
             },
             modifier = modifier,
             navigationIcon = {

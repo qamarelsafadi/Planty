@@ -1,6 +1,7 @@
 package com.qamar.planty.ui.screens.home.state
 
-import com.qamar.planty.data.source.network.plants.model.Plant
+import com.qamar.planty.data.source.network.plants.model.plant.FullPlant
+import com.qamar.planty.data.source.network.plants.model.plants.Plant
 import de.palm.composestateevents.StateEventWithContent
 import de.palm.composestateevents.consumed
 import kotlinx.collections.immutable.ImmutableList
@@ -12,19 +13,20 @@ import kotlinx.collections.immutable.persistentListOf
  * in the view screen ( a personal point of view that has no solid resource ^_^" )
  */
 
-sealed interface HomeUiState {
-    object Loading : HomeUiState
-    object IDLE : HomeUiState
+sealed interface PlantUiState {
+    object Loading : PlantUiState
+    object IDLE : PlantUiState
 
     data class Success(
         val plants: ImmutableList<Plant>? = persistentListOf(),
-    ) : HomeUiState
+        val plant: FullPlant? = null,
+    ) : PlantUiState
 
     data class Failed(
         val onFailure: StateEventWithContent<String?> = consumed(),
-    ) : HomeUiState
+    ) : PlantUiState
 
-    fun onReset(): HomeUiState {
+    fun onReset(): PlantUiState {
         val uiState = Success()
         Failed(
             onFailure = consumed()

@@ -1,7 +1,4 @@
 <resources>
-<<<<<<< HEAD
-    <string name="app_name">Planty</string>
-=======
     <string name="app_name">Planty app</string>
     <string name="valid_required">هذا الحقل مطلوب</string>
     <string name="valid_required2">الرجاء ادخال </string>
@@ -30,7 +27,7 @@
     <string name="categories">تصنيفات</string>
     <string name="no_categories_found">لا يوجد تصنيفات حاليًا</string>
     <string name="no_orders_found">لا يوجد طلبات حاليًا</string>
-    <string name="details">تفاصيل</string>
+    <string name="details">Details</string>
     <string name="data">Data</string>
     <string name="change_langauge">Change Langauge</string>
     <string name="auth">Auth</string>
@@ -38,6 +35,4 @@
     <string name="confirm_lbl">تأكيد</string>
     <string name="pagination_data">Pagination Data</string>
     <string name="take_care">TAKE CARE</string>
-
->>>>>>> 7220c26 (feat: add api)
 </resources>

@@ -1,4 +1,4 @@
-package com.qamar.planty.data.source.network.plants.model
+package com.qamar.planty.data.source.network.plants.model.plants
 
 
 import com.google.gson.annotations.SerializedName
