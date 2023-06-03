@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.qamar.planty.data.source.network.plants.model.plants.Properties
 import com.qamar.planty.ui.theme.LightGray
-import com.qamar.planty.ui.theme.percentFont
+import com.qamar.planty.ui.theme.normalFont
 import com.qamar.planty.ui.theme.textFont
 
 
@@ -62,7 +62,7 @@ private fun PercentText(property: Properties, modifier: Modifier) {
 
         Text(
             text = "${property.percent.times(100).toInt()}%",
-            style = percentFont,
+            style = normalFont,
             color = Color.Black
         )
         Text(

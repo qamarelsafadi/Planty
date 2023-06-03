@@ -3,6 +3,7 @@ package com.qamar.planty.data.source.network.plants.model.plant
 
 import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
+import com.qamar.planty.R
 
 @Keep
 data class FullPlant(
@@ -44,4 +45,7 @@ data class FullPlant(
     val vegetable: Boolean = false,
     @SerializedName("year")
     val year: Int = 0
-)
+){
+    val desription: Int
+        get() = R.string.description
+}

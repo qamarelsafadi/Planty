@@ -2,8 +2,8 @@ package com.qamar.planty.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
@@ -40,10 +40,11 @@ val titleFont20 = TextStyle(
     letterSpacing = 0.5.sp
 )
 
-val percentFont = TextStyle(
+val normalFont = TextStyle(
     fontFamily = fonts,
     fontWeight = FontWeight.Normal,
     fontSize = 30.sp,
     lineHeight = 24.sp,
-    letterSpacing = 0.5.sp
+    letterSpacing = 0.5.sp,
+    textAlign = TextAlign.Center
 )

@@ -35,5 +35,10 @@
     <string name="confirm_lbl">تأكيد</string>
     <string name="pagination_data">عرض بيانات من اكثر من صفحة</string>
     <string name="take_care">TAKE CARE</string>
+    <string name="description">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy "</string>
+    <string name="author">Author</string>
+    <string name="family">Family</string>
+    <string name="year">Year</string>
+    <string name="bibliography">Bibliography</string>
 
 </resources>
